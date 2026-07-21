@@ -26,46 +26,52 @@ export default function App() {
   return (
     <div className="min-h-screen bg-cream-bg">
       <Header />
-      <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 space-y-6">
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4 }}>
-          <HeadlineMetrics department={department} taskCategory={taskCategory} />
-        </motion.div>
+      <main className="w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
+        <div className="max-w-6xl mx-auto space-y-4 sm:space-y-5 md:space-y-6">
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4 }}>
+            <HeadlineMetrics department={department} taskCategory={taskCategory} />
+          </motion.div>
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.05 }}>
-          <DataQualityPanel />
-        </motion.div>
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.05 }}>
+            <DataQualityPanel />
+          </motion.div>
 
-        <motion.div
-          initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.1 }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3"
-        >
-          <DepartmentFilter selected={department} onChange={setDepartment} />
-          <ExportButton department={department} taskCategory={taskCategory} />
-        </motion.div>
+          <motion.div
+            initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex flex-col gap-3 sm:gap-4 md:flex-row md:justify-between md:items-center"
+          >
+            <div className="w-full md:w-auto">
+              <DepartmentFilter selected={department} onChange={setDepartment} />
+            </div>
+            <div className="w-full md:w-auto">
+              <ExportButton department={department} taskCategory={taskCategory} />
+            </div>
+          </motion.div>
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.15 }}>
-          <AnomalyCallout />
-        </motion.div>
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.15 }}>
+            <AnomalyCallout />
+          </motion.div>
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.2 }}>
-          <BreakdownChart department={department} onSelectTask={setTaskCategory} />
-        </motion.div>
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.2 }}>
+            <BreakdownChart department={department} onSelectTask={setTaskCategory} />
+          </motion.div>
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.25 }}>
-          <AutomationRanking department={department} />
-        </motion.div>
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.25 }}>
+            <AutomationRanking department={department} />
+          </motion.div>
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.3 }}>
-          <TrendChart />
-        </motion.div>
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.3 }}>
+            <TrendChart />
+          </motion.div>
 
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.35 }}>
-          <EmployeeList department={department} taskCategory={taskCategory} onSelectEmployee={setSelectedEmployee} />
-        </motion.div>
+          <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.4, delay: 0.35 }}>
+            <EmployeeList department={department} taskCategory={taskCategory} onSelectEmployee={setSelectedEmployee} />
+          </motion.div>
 
-        {selectedEmployee && (
-          <EmployeeDrilldown employeeId={selectedEmployee} onClose={() => setSelectedEmployee(null)} />
-        )}
+          {selectedEmployee && (
+            <EmployeeDrilldown employeeId={selectedEmployee} onClose={() => setSelectedEmployee(null)} />
+          )}
+        </div>
       </main>
       <ChatFAB />
     </div>

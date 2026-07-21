@@ -11,10 +11,11 @@ export default function ExportButton({ department, taskCategory }) {
   return (
     <button
       onClick={download}
-      className="flex items-center gap-2 bg-primary hover:bg-primary-container px-6 py-2.5 rounded-lg text-white text-label-sm transition-all active:scale-95"
+      className="flex items-center gap-1.5 sm:gap-2 bg-primary hover:bg-primary-container px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-lg text-white text-[10px] sm:text-label-sm transition-all active:scale-95 whitespace-nowrap"
     >
-      <FileDown size={16} />
-      Export Report PDF
+      <FileDown size={14} className="sm:w-4 sm:h-4" />
+      <span className="hidden sm:inline">Export Report PDF</span>
+      <span className="sm:hidden">Export PDF</span>
     </button>
   );
 }

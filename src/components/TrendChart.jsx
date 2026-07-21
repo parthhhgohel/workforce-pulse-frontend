@@ -13,19 +13,19 @@ export default function TrendChart() {
   }, []);
 
   return (
-    <section className="bg-white p-8 rounded-card shadow-editorial card-enter">
-      <span className="text-label-sm text-outline uppercase tracking-wider">Efficiency Momentum</span>
-      <h2 className="font-display text-headline-md text-primary mb-6">Week-over-Week Trend</h2>
+    <section className="bg-white p-4 sm:p-6 md:p-8 rounded-card shadow-editorial card-enter">
+      <span className="text-[10px] sm:text-label-sm text-outline uppercase tracking-wider">Efficiency Momentum</span>
+      <h2 className="font-display text-base sm:text-lg md:text-headline-md text-primary mb-4 sm:mb-6">Week-over-Week Trend</h2>
       {loading ? (
-        <div className="h-48 flex items-center justify-center text-sm text-outline">Loading trend...</div>
+        <div className="h-40 sm:h-44 md:h-48 flex items-center justify-center text-xs sm:text-sm text-outline">Loading trend...</div>
       ) : (
-        <ResponsiveContainer width="100%" height={240}>
+        <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 200 : 240}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E3EBE7" />
-            <XAxis dataKey="label" tick={{ fontSize: 12, fill: "#727973" }} />
-            <YAxis tick={{ fontSize: 12, fill: "#727973" }} unit="%" />
+            <XAxis dataKey="label" tick={{ fontSize: 10, fill: "#727973" }} />
+            <YAxis tick={{ fontSize: 10, fill: "#727973" }} unit="%" />
             <Tooltip />
-            <Line type="monotone" dataKey="repetitive_share_pct" stroke="#183829" strokeWidth={3} dot={{ fill: "#c9a15a", r: 4 }} />
+            <Line type="monotone" dataKey="repetitive_share_pct" stroke="#183829" strokeWidth={2} dot={{ fill: "#c9a15a", r: 3 }} />
           </LineChart>
         </ResponsiveContainer>
       )}
