@@ -20,11 +20,16 @@ export default function ChatFAB() {
     if (!question.trim()) return;
     const q = question;
     setQuestion("");
+    
+    // Add user message instantly
+    const updatedHistory = [...history, { role: "user", content: q }];
+    setHistory(updatedHistory);
+    
     setLoading(true);
     setError(null);
     try {
-      const res = await api.post("/ai-chat/", { question: q, history });
-      setHistory((h) => [...h, { role: "user", content: q }, { role: "assistant", content: res.data.answer }]);
+      const res = await api.post("/ai-chat/", { question: q, history: updatedHistory });
+      setHistory((h) => [...h, { role: "assistant", content: res.data.answer }]);
     } catch (e) {
       setError("Couldn't reach the assistant. Try again in a moment.");
     } finally {
